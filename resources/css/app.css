@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply bg-slate-100 font-sans text-[14.5px] leading-relaxed text-slate-700 antialiased;
+        font-feature-settings: "kern" 1, "liga" 1;
+    }
+
+    h1,
+    h2,
+    h3 {
+        text-wrap: balance;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        @apply bg-gov-200 text-gov-950;
+    }
+
+    /* Fokus yang jelas untuk pengguna keyboard. */
+    :focus-visible {
+        outline: 2px solid theme('colors.gov.400');
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    .gov-card {
+        @apply min-w-0 rounded-lg border border-slate-200 bg-white shadow-card;
+    }
+
+    .gov-card-head {
+        @apply flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-3.5;
+    }
+
+    .gov-card-title {
+        @apply text-[14.5px] font-semibold tracking-tight text-gov-900;
+    }
+
+    .gov-label {
+        @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500;
+    }
+
+    .gov-input {
+        @apply block w-full min-w-0 rounded-md border-slate-300 bg-white text-[13.5px] text-slate-800 shadow-sm transition placeholder:text-slate-400 focus:border-gov-500 focus:ring-gov-500 file:mr-3 file:cursor-pointer file:rounded file:border-0 file:bg-gov-700 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-gov-800;
+    }
+
+    .gov-help {
+        @apply mt-1 text-[11.5px] leading-relaxed text-slate-500;
+    }
+
+    .gov-btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-gov-700 px-3.5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-gov-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-gov-500 focus-visible:ring-offset-2 disabled:opacity-60;
+    }
+
+    .gov-btn-gold {
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold-400 px-3.5 py-2 text-[13px] font-semibold text-gov-900 shadow-sm transition hover:bg-gold-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2;
+    }
+
+    .gov-btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-[13px] font-semibold text-slate-700 transition hover:border-gov-300 hover:bg-gov-50 hover:text-gov-800;
+    }
+
+    .gov-btn-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-[13px] font-semibold text-red-700 transition hover:bg-red-100;
+    }
+
+    .gov-link {
+        @apply font-semibold text-gov-700 underline-offset-2 hover:text-gov-900 hover:underline;
+    }
+
+    .gov-th {
+        @apply whitespace-nowrap bg-slate-50/80 px-4 py-2.5 text-left text-[10.5px] font-bold uppercase tracking-[0.12em] text-slate-500;
+    }
+
+    .gov-td {
+        @apply px-4 py-3 align-top text-[13.5px] text-slate-700;
+    }
+
+    .gov-table {
+        @apply w-full border-collapse text-left text-[13.5px];
+        /* Tanpa ini label sr-only lolos dari wadah gulir dan melebarkan halaman. */
+        position: relative;
+    }
+
+    /* Cegah isi panjang (select, tabel, teks) mendorong lebar halaman. */
+    .gov-card select,
+    .gov-card input,
+    .gov-card textarea {
+        min-width: 0;
+    }
+
+    .gov-table tbody tr {
+        @apply transition-colors;
+    }
+
+    .gov-table tbody tr:hover {
+        @apply bg-gov-50/40;
+    }
+
+    .gov-eyebrow {
+        @apply text-[10.5px] font-bold uppercase tracking-[0.16em] text-slate-500;
+    }
+
+    /* Garis ganda tebal-tipis mengikuti kop naskah dinas. */
+    .gov-rule {
+        height: 4px;
+        border-top: 2px solid theme('colors.gov.900');
+        border-bottom: 1px solid theme('colors.gold.400');
+    }
+
+    .gov-rule-light {
+        height: 4px;
+        border-top: 2px solid rgba(255, 255, 255, 0.88);
+        border-bottom: 1px solid theme('colors.gold.400');
+    }
+
+    .gov-page-title {
+        @apply font-serif text-[26px] font-semibold leading-tight tracking-[-0.01em] text-gov-900;
+    }
+
+    .gov-section-title {
+        @apply font-serif text-[17px] font-semibold leading-snug text-gov-900;
+    }
+
+    .gov-nav {
+        @apply flex items-center gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium text-gov-100/75 transition hover:bg-white/10 hover:text-white;
+    }
+
+    /* Scrollbar tipis tanpa track putih, agar latar navy tidak terpotong. */
+    .gov-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+    }
+
+    .gov-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .gov-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .gov-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+    }
+
+    .gov-nav-active {
+        @apply bg-white/[0.12] text-white;
+        box-shadow: inset 2px 0 0 theme('colors.gold.400');
+    }
+
+    .gov-badge {
+        @apply inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.06em];
+    }
+
+    .gov-stat {
+        @apply font-serif text-[24px] font-semibold leading-none tabular-nums text-gov-900;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
